@@ -137,3 +137,8 @@ violet = Plant.create(
 
 violet.light = four
 violet.water = two_w
+
+an = User.create(name: "An")
+an.plants = [snakey, violet, lily, orchid, jasmine]
+bedroom = an.collections.push(Collection.create(name: "Bedroom plants"))
+bedroom.plants = [snakey, lily, orchid]
