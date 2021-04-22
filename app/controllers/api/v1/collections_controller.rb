@@ -3,9 +3,9 @@ class Api::V1::CollectionsController < ApplicationController
     def create
         @collection = Collection.new(collection_params)
         if @collection.save
-            render json: @plant, status: :accepted
+            render json: @collection, status: :accepted
         else 
-            render json: {errors: @plant.errors.full_messages}, status: :unprocessible_entity
+            render json: {errors: @collection.errors.full_messages}, status: :unprocessible_entity
         end
     end
 
