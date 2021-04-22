@@ -3,7 +3,6 @@ class CreateUserPlants < ActiveRecord::Migration[6.0]
     create_table :user_plants do |t|
       t.references :user, null: false, foreign_key: true
       t.references :plant, null: false, foreign_key: true
-      t.references :collection, null: false, foreign_key: true
 
       t.timestamps
     end

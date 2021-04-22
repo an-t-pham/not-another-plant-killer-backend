@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+
 one = Light.create(level: 1, description: "Prefers indirect sunlight", ideal_location: "Bedroom")
 two = Light.create(level: 2, description: "Thrives in moderate sunlight", ideal_location: "Bathroom")
 three = Light.create(level: 3, description: "Loves bright but indirect sunlight", ideal_location: "Living Room")
@@ -42,7 +43,7 @@ evergreen.water = three_w
 ivy = Plant.create(
     name: "English Ivy",
     aka: "Hedera Helix",
-    description: "To the ancient Greeks and Romans, glossy-leafed, dark green ivy was sacred to the god Dionysus (Bacchus in Rome). The pagan druids reflected on ivy in the Christmas carol, "The Holly and the Ivy," where the plant represents female divinity. This plant clearly had an impact on ancient cultures but did not stop there. The evergreen vines of this invasive species have covered vast areas of Europe.",
+    description: "To the ancient Greeks and Romans, glossy-leafed, dark green ivy was sacred to the god Dionysus (Bacchus in Rome). The pagan druids reflected on ivy in the Christmas carol, The Holly and the Ivy, where the plant represents female divinity. This plant clearly had an impact on ancient cultures but did not stop there. The evergreen vines of this invasive species have covered vast areas of Europe.",
     size_pot: 5,
     pet_friendly: false
 )
@@ -140,5 +141,7 @@ violet.water = two_w
 
 an = User.create(name: "An")
 an.plants = [snakey, violet, lily, orchid, jasmine]
-bedroom = an.collections.push(Collection.create(name: "Bedroom plants"))
+an.collections.build(name: "Bedroom plants")
+an.save
+bedroom = an.collections.first
 bedroom.plants = [snakey, lily, orchid]

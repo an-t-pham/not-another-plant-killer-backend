@@ -10,12 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_21_092654) do
+ActiveRecord::Schema.define(version: 2021_04_22_080407) do
+
+  create_table "collection_plants", force: :cascade do |t|
+    t.integer "collection_id", null: false
+    t.integer "plant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["collection_id"], name: "index_collection_plants_on_collection_id"
+    t.index ["plant_id"], name: "index_collection_plants_on_plant_id"
+  end
 
   create_table "collections", force: :cascade do |t|
     t.string "name"
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_collections_on_user_id"
   end
 
   create_table "lights", force: :cascade do |t|
@@ -57,10 +68,8 @@ ActiveRecord::Schema.define(version: 2021_04_21_092654) do
   create_table "user_plants", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "plant_id", null: false
-    t.integer "collection_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["collection_id"], name: "index_user_plants_on_collection_id"
     t.index ["plant_id"], name: "index_user_plants_on_plant_id"
     t.index ["user_id"], name: "index_user_plants_on_user_id"
   end
@@ -78,11 +87,13 @@ ActiveRecord::Schema.define(version: 2021_04_21_092654) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "collection_plants", "collections"
+  add_foreign_key "collection_plants", "plants"
+  add_foreign_key "collections", "users"
   add_foreign_key "plant_lights", "lights"
   add_foreign_key "plant_lights", "plants"
   add_foreign_key "plant_waters", "plants"
   add_foreign_key "plant_waters", "waters"
-  add_foreign_key "user_plants", "collections"
   add_foreign_key "user_plants", "plants"
   add_foreign_key "user_plants", "users"
 end

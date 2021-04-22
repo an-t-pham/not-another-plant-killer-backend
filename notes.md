@@ -1,21 +1,27 @@
 User
   has_many :user_plants
   has_many :plants, through: :user_plants
-  has_many :collections, through: :user_plants
+  has_many :collections
   :name - string
 
 User_plant
   belongs_to :user
   belongs_to :plant
-  belongs_to :collection
-  :user_id - integer, :plant_id - integer, collection_id - integer
+  :user_id - integer, :plant_id - integer
   
 
 Collection
-  has_many :user_plants
-  has_many :plants, through: :user_plants
+  belongs_to :user
+  has_many :collection_plants
+  has_many :plants, through: :collection_plants
 
   :name - string
+
+Collection_plant
+  belongs_to :plan
+  belongs_to :collection
+
+  :plant_id - integer, :collection_id - integer
 
 Plant
   has_one: :plant_light
@@ -24,7 +30,8 @@ Plant
   has_one :water, through: :plant_water
   has_many :user_plants
   has_many :users, through: :user_plants
-  has_many :collections, through: :user_plants
+  has_many :collection_plants
+  has_many :collections, through: :collection_plants
   :name - string, :aka - string, :description - string, :size_pot - integer, :pet-friendly - boolean
 
 Light
