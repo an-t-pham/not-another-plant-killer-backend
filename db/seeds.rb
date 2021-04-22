@@ -6,7 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
+Light.destroy_all
+Water.destroy_all
+Plant.destroy_all
+Collection.destroy_all
+User.destroy_all
 
 one = Light.create(level: 1, description: "Prefers indirect sunlight", ideal_location: "Bedroom")
 two = Light.create(level: 2, description: "Thrives in moderate sunlight", ideal_location: "Bathroom")
