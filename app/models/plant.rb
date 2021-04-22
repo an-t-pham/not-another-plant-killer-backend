@@ -5,7 +5,8 @@ class Plant < ApplicationRecord
   has_one :water, through: :plant_water
   has_many :user_plants
   has_many :users, through: :user_plants
-  has_many :collections, through: :user_plants
+  has_many :collection_plants
+  has_many :collections, through: :collection_plants
 
   validates :name, :description, presence: true
 end
