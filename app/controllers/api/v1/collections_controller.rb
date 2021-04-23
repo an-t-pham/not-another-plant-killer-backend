@@ -21,6 +21,12 @@ class Api::V1::CollectionsController < ApplicationController
         end
     end
 
+    def update
+        @collection = Collection.find_by_id(params[:id])
+        @collection.update(collection_params)
+        render json: @collection
+    end
+
     def show
         @collection = Collection.find_by_id(params[:id])
         render json: @collection

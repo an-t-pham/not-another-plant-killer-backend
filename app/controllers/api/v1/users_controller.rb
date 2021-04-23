@@ -9,6 +9,13 @@ class Api::V1::UsersController < ApplicationController
         end
     end
 
+
+    def update
+        @user = User.find_by_id(params[:id])
+        @user.update(user_params)
+        render json: @user
+    end
+
     def index_plant
         @user = User.find_by_id(params[:id])
         @plants = @user.plants
