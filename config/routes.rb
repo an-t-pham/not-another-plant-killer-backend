@@ -2,8 +2,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :plants, only: [:index, :show]
-      resources :users, only: [:index_plant, :create, :show, :destroy] do
+      resources :plants, only: [:index, :show, :create]
+      resources :users, only: [:index, :create, :show, :destroy] do
+        get '/plants' => 'plants#user_plant'
         resources :collections, only: [:index, :index_plant, :create, :show, :destroy] 
       end
         

@@ -3,9 +3,9 @@ class Api::V1::UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if user.save
-            render json: @user, status: :accepted
+            render json: UserSerializer.new(@user), status: :accepted
         else 
-            render json: {errors: @user.errors.full_messages}, status: :unprocessible_entity
+            render json: {errors: UserSerializer.new(@user).errors.full_messages}, status: :unprocessible_entity
         end
     end
 
@@ -13,18 +13,13 @@ class Api::V1::UsersController < ApplicationController
     def update
         @user = User.find_by_id(params[:id])
         @user.update(user_params)
-        render json: @user
+        render json: PlantSerializer.new(@user)
     end
 
-    def index_plant
-        @user = User.find_by_id(params[:id])
-        @plants = @user.plants
-        render json: @plants
-    end
-
+   
     def show
         @user = User.find_by_id(params[:id])
-        render json: @user
+        render json: UserSerializer.new(@user)
     end
 
     def destroy

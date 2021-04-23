@@ -3,33 +3,33 @@ class Api::V1::CollectionsController < ApplicationController
 
     def index
         @collections = @user.collections
-        render json: @collections
+        render json: CollectionSerializer.new(@collections)
     end
 
     def index_plant
         @collection = Collection.find_by_id(params[:id])
         @plants = @collection.plants
-        render json: @plants
+        render json: CollectionSerializer.new(@plants)
     end
 
     def create
         @collection = @user.collections.build(collection_params)
         if @collection.save
-            render json: @collection, status: :accepted
+            render json: CollectionSerializer.new(@collection), status: :accepted
         else 
-            render json: {errors: @collection.errors.full_messages}, status: :unprocessible_entity
+            render json: {errors: CollectionSerializer.new(@collection).errors.full_messages}, status: :unprocessible_entity
         end
     end
 
     def update
         @collection = Collection.find_by_id(params[:id])
         @collection.update(collection_params)
-        render json: @collection
+        render json: CollectionSerializer.new(@collection)
     end
 
     def show
         @collection = Collection.find_by_id(params[:id])
-        render json: @collection
+        render json: CollectionSerializer.new(@collection)
     end
 
     def destroy
@@ -44,6 +44,6 @@ class Api::V1::CollectionsController < ApplicationController
     end
 
     def set_user
-        @user = User.find_by_id(:user_id)
+        @user = User.find_by_id(params[:user_id])
     end
 end
