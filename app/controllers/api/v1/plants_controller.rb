@@ -15,7 +15,7 @@ class Api::V1::PlantsController < ApplicationController
     end
 
     def show
-        @plant = Plant.find(params[:id])
+        @plant = Plant.find_by_id(params[:id])
         render json: @plant
     end
 
