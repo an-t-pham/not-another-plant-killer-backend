@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2021_04_22_080407) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "collection_plants", force: :cascade do |t|
-    t.integer "collection_id", null: false
-    t.integer "plant_id", null: false
+    t.bigint "collection_id", null: false
+    t.bigint "plant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["collection_id"], name: "index_collection_plants_on_collection_id"
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_04_22_080407) do
 
   create_table "collections", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_collections_on_user_id"
@@ -38,8 +41,8 @@ ActiveRecord::Schema.define(version: 2021_04_22_080407) do
   end
 
   create_table "plant_lights", force: :cascade do |t|
-    t.integer "plant_id", null: false
-    t.integer "light_id", null: false
+    t.bigint "plant_id", null: false
+    t.bigint "light_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["light_id"], name: "index_plant_lights_on_light_id"
@@ -47,8 +50,8 @@ ActiveRecord::Schema.define(version: 2021_04_22_080407) do
   end
 
   create_table "plant_waters", force: :cascade do |t|
-    t.integer "plant_id", null: false
-    t.integer "water_id", null: false
+    t.bigint "plant_id", null: false
+    t.bigint "water_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["plant_id"], name: "index_plant_waters_on_plant_id"
@@ -66,8 +69,8 @@ ActiveRecord::Schema.define(version: 2021_04_22_080407) do
   end
 
   create_table "user_plants", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "plant_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "plant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["plant_id"], name: "index_user_plants_on_plant_id"
