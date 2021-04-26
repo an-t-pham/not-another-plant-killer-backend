@@ -5,7 +5,7 @@ class Api::V1::PlantsController < ApplicationController
         render json: PlantSerializer.new(@plants)
     end
 
-    def user_plant
+    def user_plants
         @user = User.find_by_id(params[:user_id])
         if params[:user_id]
            @plants = @user.plants
