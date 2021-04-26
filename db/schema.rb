@@ -10,23 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_22_080407) do
+ActiveRecord::Schema.define(version: 2021_04_26_093332) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "collection_plants", force: :cascade do |t|
-    t.bigint "collection_id", null: false
-    t.bigint "plant_id", null: false
+    t.uuid "collection_id", null: false
+    t.uuid "plant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["collection_id"], name: "index_collection_plants_on_collection_id"
     t.index ["plant_id"], name: "index_collection_plants_on_plant_id"
   end
 
-  create_table "collections", force: :cascade do |t|
+  create_table "collections", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
-    t.bigint "user_id", null: false
+    t.uuid "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_collections_on_user_id"
@@ -41,7 +42,7 @@ ActiveRecord::Schema.define(version: 2021_04_22_080407) do
   end
 
   create_table "plant_lights", force: :cascade do |t|
-    t.bigint "plant_id", null: false
+    t.uuid "plant_id", null: false
     t.bigint "light_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -50,7 +51,7 @@ ActiveRecord::Schema.define(version: 2021_04_22_080407) do
   end
 
   create_table "plant_waters", force: :cascade do |t|
-    t.bigint "plant_id", null: false
+    t.uuid "plant_id", null: false
     t.bigint "water_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -58,7 +59,7 @@ ActiveRecord::Schema.define(version: 2021_04_22_080407) do
     t.index ["water_id"], name: "index_plant_waters_on_water_id"
   end
 
-  create_table "plants", force: :cascade do |t|
+  create_table "plants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "aka"
     t.string "description"
@@ -69,15 +70,15 @@ ActiveRecord::Schema.define(version: 2021_04_22_080407) do
   end
 
   create_table "user_plants", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "plant_id", null: false
+    t.uuid "user_id", null: false
+    t.uuid "plant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["plant_id"], name: "index_user_plants_on_plant_id"
     t.index ["user_id"], name: "index_user_plants_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
