@@ -30,6 +30,16 @@ class Api::V1::PlantsController < ApplicationController
         render json: PlantSerializer.new(@plant)
     end
 
+    def update
+        @plant = Plant.find_by_id(params[:id])
+        @plant.update(plant_params)
+        render json: PlantSerializer.new(@plant)
+    end
+    
+    def destroy
+        plant = Plant.find_by_id(params[:id])
+        plant.destroy
+    end
 
     private
     def plant_params
