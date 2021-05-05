@@ -17,9 +17,10 @@ class Api::V1::PlantsController < ApplicationController
 
     
     def create
-        binding.pry
         @plant = Plant.new(plant_params)
-       
+        @plant.water = Water.find_by_id(params[:water])
+        @plant.light = Light.find_by_id(params[:light])
+        
         if @plant.save
             render json: PlantSerializer.new(@plant), status: :accepted
         else 
