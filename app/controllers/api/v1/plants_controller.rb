@@ -17,7 +17,9 @@ class Api::V1::PlantsController < ApplicationController
 
     
     def create
+        binding.pry
         @plant = Plant.new(plant_params)
+       
         if @plant.save
             render json: PlantSerializer.new(@plant), status: :accepted
         else 
