@@ -9,4 +9,8 @@ class Plant < ApplicationRecord
   has_many :collections, through: :collection_plants
 
   validates :name, :description, presence: true
+
+  def slug
+     name.parameterize
+  end
 end
