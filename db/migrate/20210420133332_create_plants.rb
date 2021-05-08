@@ -6,6 +6,7 @@ class CreatePlants < ActiveRecord::Migration[6.0]
       t.string :description
       t.integer :size_pot
       t.boolean :pet_friendly
+      t.string :image_url
 
       t.timestamps
     end
