@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2021_04_26_093332) do
     t.string "description"
     t.integer "size_pot"
     t.boolean "pet_friendly"
+    t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
