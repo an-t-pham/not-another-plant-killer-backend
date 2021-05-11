@@ -14,4 +14,8 @@ class Plant < ApplicationRecord
   def slug
      name.parameterize
   end
+
+  def formatted_name
+    name.titleize
+  end
 end
