@@ -20,6 +20,7 @@ class Api::V1::PlantsController < ApplicationController
         @plant = Plant.new(plant_params)
         @plant.water = Water.find_by_id(params[:water])
         @plant.light = Light.find_by_id(params[:light])
+        @plant.name = @plant.name.downcase
         
         if @plant.save
             render json: PlantSerializer.new(@plant), status: :accepted
