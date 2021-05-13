@@ -3,6 +3,6 @@ class User < ApplicationRecord
   has_many :plants, through: :user_plants
   has_many :collections, dependent: :destroy
 
-  validates :name, :email,  presence: true
+  validates :email,  presence: true
   validates :email, uniqueness: true
 end
