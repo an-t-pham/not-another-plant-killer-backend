@@ -18,8 +18,8 @@ class Api::V1::PlantsController < ApplicationController
     
     def create
         @plant = Plant.new(plant_params)
-        @plant.water = Water.find_by_id(params[:water])
-        @plant.light = Light.find_by_id(params[:light])
+        @plant.water = Water.find_by(level: params[:water])
+        @plant.light = Light.find_by(level: params[:light])
         @plant.name = @plant.name.downcase
         
         if @plant.save
@@ -37,7 +37,14 @@ class Api::V1::PlantsController < ApplicationController
     def update
         @plant = Plant.find_by_id(params[:id])
         @plant.update(plant_params)
-        render json: PlantSerializer.new(@plant)
+        @plant.water = Water.find_by(level: params[:water])
+        @plant.light = Light.find_by(level: params[:light])
+        # binding.pry
+        if @plant.save
+            render json: PlantSerializer.new(@plant), status: :accepted
+        else 
+            render json: {errors: PlantSerializer.new(@plant).errors.full_messages}, status: :unprocessible_entity
+        end
     end
     
     def destroy
