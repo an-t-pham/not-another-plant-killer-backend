@@ -5,9 +5,6 @@ class Api::V1::PlantsController < ApplicationController
         render json: PlantSerializer.new(@plants)
     end
 
-   
-
-    
     def create
         @plant = Plant.new(plant_params)
         @plant.water = Water.find_by(level: params[:water])

@@ -6,8 +6,8 @@ class Api::V1::CollectionsController < ApplicationController
         render json: CollectionSerializer.new(@collections)
     end
 
-    def plants
-        @collection = Collection.find_by_id(params[:id])
+    def collection_plants
+        @collection = Collection.find_by_id(params[:collection_id])
         @plants = @collection.plants
         render json: CollectionSerializer.new(@plants)
     end
