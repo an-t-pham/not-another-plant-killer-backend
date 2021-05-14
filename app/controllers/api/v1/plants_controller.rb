@@ -28,7 +28,6 @@ class Api::V1::PlantsController < ApplicationController
         @plant.update(plant_params)
         @plant.water = Water.find_by(level: params[:water])
         @plant.light = Light.find_by(level: params[:light])
-        # binding.pry
         if @plant.save
             render json: PlantSerializer.new(@plant), status: :accepted
         else 
