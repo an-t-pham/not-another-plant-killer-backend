@@ -5,15 +5,7 @@ class Api::V1::PlantsController < ApplicationController
         render json: PlantSerializer.new(@plants)
     end
 
-    def user_plants
-        @user = User.find_by_id(params[:user_id])
-        if params[:user_id]
-           @plants = @user.plants
-           render json: PlantSerializer.new(@plants)
-        else 
-            render json: {error: 'You are not logged in'}
-        end
-    end
+   
 
     
     def create

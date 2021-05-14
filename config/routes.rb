@@ -9,7 +9,9 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :create] do
         get '/plants' => 'plants#user_plants'
         resources :plants, only: [:create]
-        resources :collections, only: [:index, :index_plant, :create, :show, :update, :destroy] 
+        resources :collections, only: [:index, :create, :show, :update, :destroy] do
+          get '/plants' => 'collections#plants'
+        end
       end
         
     end
