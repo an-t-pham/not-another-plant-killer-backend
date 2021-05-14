@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :plants, only: [:index, :create, :show, :update, :destroy]
       resources :waters, only: [:index]
       resources :lights, only: [:index]
-      resources :users, only: [:index] do
+      resources :users, only: [:index, :create] do
         get '/plants' => 'plants#user_plants'
         resources :plants, only: [:create]
         resources :collections, only: [:index, :index_plant, :create, :show, :update, :destroy] 
