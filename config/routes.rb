@@ -10,7 +10,7 @@ Rails.application.routes.draw do
         get '/plants' => 'users#user_plants'
         resources :plants, only: [:create]
         resources :collections, only: [:index, :create, :show, :update, :destroy] do
-          get '/plants' => 'collections#collection_plants'
+          post '/plants' => 'collections#collection_plants'
         end
       end
         
