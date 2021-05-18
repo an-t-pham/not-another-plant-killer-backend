@@ -8,8 +8,10 @@ class Api::V1::CollectionsController < ApplicationController
 
     def collection_plants
         @collection = Collection.find_by_id(params[:collection_id])
-        @plants = @collection.plants
-        render json: CollectionSerializer.new(@plants)
+        @plant = Plant.find_by_id(params[:id])
+        @plants = @collection.plants.push(@plant)
+        @collection.save if @plant
+        render json: CollectionSerializer.new(@collection)
     end
 
     def create
