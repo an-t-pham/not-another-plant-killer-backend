@@ -6,10 +6,12 @@ class Api::V1::CollectionsController < ApplicationController
         render json: CollectionSerializer.new(@collections)
     end
 
-    def index_plant
-        @collection = Collection.find_by_id(params[:id])
-        @plants = @collection.plants
-        render json: CollectionSerializer.new(@plants)
+    def collection_plants
+        @collection = Collection.find_by_id(params[:collection_id])
+        @plant = Plant.find_by_id(params[:id])
+        @plants = @collection.plants.push(@plant)
+        @collection.save if @plant
+        render json: CollectionSerializer.new(@collection)
     end
 
     def create
@@ -35,6 +37,14 @@ class Api::V1::CollectionsController < ApplicationController
     def destroy
         @collection = Collection.find_by_id(params[:id])
         @collection.destroy
+    end
+
+    def remove_plant 
+        @plant = Plant.find_by_id(params[:id])
+        @collection = Collection.find_by_id(params[:collection_id])
+        plants = @collection.plants.filter{|p| p != @plant}
+        @collection.plants = plants
+        render json: CollectionSerializer.new(@collection)
     end
 
 

@@ -7,9 +7,12 @@ Rails.application.routes.draw do
       resources :waters, only: [:index]
       resources :lights, only: [:index]
       resources :users, only: [:index, :create] do
-        get '/plants' => 'plants#user_plants'
+        get '/plants' => 'users#user_plants'
         resources :plants, only: [:create]
-        resources :collections, only: [:index, :index_plant, :create, :show, :update, :destroy] 
+        resources :collections, only: [:index, :create, :show, :update, :destroy] do
+          post '/plants' => 'collections#collection_plants'
+          patch '/plants' => 'collections#remove_plant'
+        end
       end
         
     end
