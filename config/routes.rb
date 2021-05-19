@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         resources :plants, only: [:create]
         resources :collections, only: [:index, :create, :show, :update, :destroy] do
           post '/plants' => 'collections#collection_plants'
+          patch '/plants' => 'collections#remove_plant'
         end
       end
         

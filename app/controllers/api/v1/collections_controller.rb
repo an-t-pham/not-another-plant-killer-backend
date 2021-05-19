@@ -39,6 +39,14 @@ class Api::V1::CollectionsController < ApplicationController
         @collection.destroy
     end
 
+    def remove_plant 
+        @plant = Plant.find_by_id(params[:id])
+        @collection = Collection.find_by_id(params[:collection_id])
+        plants = @collection.plants.filter{|p| p != @plant}
+        @collection.plants = plants
+        render json: CollectionSerializer.new(@collection)
+    end
+
 
     private
     def collection_params
