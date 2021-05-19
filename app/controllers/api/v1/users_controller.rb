@@ -14,16 +14,6 @@ class Api::V1::UsersController < ApplicationController
         render json: UserSerializer.new(@users)
     end
 
-    def user_plants
-        @user = User.find_by_id(params[:user_id])
-        if params[:user_id]
-           @plants = @user.plants
-           render json: UserSerializer.new(@plants)
-        else 
-            render json: {error: 'You are not logged in'}
-        end
-    end
-
     private
     def user_params
         params.require(:user).permit(:name, :email)
