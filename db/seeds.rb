@@ -151,12 +151,12 @@ violet = Plant.create(
     image_url: "https://africanvioletresourcecenter.com/wp-content/uploads/2020/09/unnamed-111.jpg"
 )
 
-violet.light = four
-violet.water = two_w
+# violet.light = four
+# violet.water = two_w
 
-an = User.create(name: "An")
-an.plants = [snakey, violet, lily, orchid, jasmine]
-an.collections.build(name: "Bedroom plants")
-an.save
-bedroom = an.collections.first
-bedroom.plants = [snakey, lily, orchid]
+# an = User.create(name: "An")
+# an.plants = [snakey, violet, lily, orchid, jasmine]
+# an.collections.build(name: "Bedroom plants")
+# an.save
+# bedroom = an.collections.first
+# bedroom.plants = [snakey, lily, orchid]

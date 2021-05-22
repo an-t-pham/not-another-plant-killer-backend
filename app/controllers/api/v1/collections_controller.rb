@@ -1,7 +1,6 @@
 class Api::V1::CollectionsController < ApplicationController
-    before_action :set_user
-
     def index
+        @user = User.find_by_id(params[:user_id])
         @collections = @user.collections
         render json: CollectionSerializer.new(@collections)
     end
@@ -15,7 +14,9 @@ class Api::V1::CollectionsController < ApplicationController
     end
 
     def create
+        @user = User.find_by_id(params[:user_id])
         @collection = @user.collections.build(collection_params)
+    
         if @collection.save
             render json: CollectionSerializer.new(@collection), status: :accepted
         else 
@@ -53,7 +54,4 @@ class Api::V1::CollectionsController < ApplicationController
         params.require(:collection).permit(:name)
     end
 
-    def set_user
-        @user = User.find_by_id(params[:user_id])
-    end
 end
