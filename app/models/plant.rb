@@ -7,6 +7,7 @@ class Plant < ApplicationRecord
   has_many :collections, through: :collection_plants
 
   validates :name, :description, presence: true
+  validates :size_pot, numericality: { only_integer: true }
   validates :name, uniqueness: true
 
   def slug

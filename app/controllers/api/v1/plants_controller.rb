@@ -14,7 +14,7 @@ class Api::V1::PlantsController < ApplicationController
         if @plant.save
             render json: PlantSerializer.new(@plant), status: :accepted
         else 
-            render json: {errors: PlantSerializer.new(@plant).errors.full_messages}, status: :unprocessible_entity
+            render json: {errors: @plant.errors.full_messages}, status: :internal_server_error
         end
     end
 
@@ -31,7 +31,7 @@ class Api::V1::PlantsController < ApplicationController
         if @plant.save
             render json: PlantSerializer.new(@plant), status: :accepted
         else 
-            render json: {errors: PlantSerializer.new(@plant).errors.full_messages}, status: :unprocessible_entity
+            render json: {errors: @plant.errors.full_messages}, status: :internal_server_error
         end
     end
     
