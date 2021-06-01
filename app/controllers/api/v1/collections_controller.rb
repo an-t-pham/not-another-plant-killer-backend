@@ -20,14 +20,17 @@ class Api::V1::CollectionsController < ApplicationController
         if @collection.save
             render json: CollectionSerializer.new(@collection), status: :accepted
         else 
-            render json: {errors: CollectionSerializer.new(@collection).errors.full_messages}, status: :unprocessible_entity
+            render json: {errors: @collection.errors.full_messages}, status: :internal_server_error
         end
     end
 
     def update
         @collection = Collection.find_by_id(params[:id])
-        @collection.update(collection_params)
-        render json: CollectionSerializer.new(@collection)
+        if @collection.update(collection_params)
+           render json: CollectionSerializer.new(@collection)
+        else
+            render json: {errors: @collection.errors.full_messages}, status: :internal_server_error
+        end
     end
 
     def show
