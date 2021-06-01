@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  
-  get '/private' => 'private#private'
+
   namespace :api do
     namespace :v1 do
       resources :plants, only: [:index, :create, :show, :update, :destroy]
