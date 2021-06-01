@@ -13,7 +13,7 @@ A Single Application for Plant Information & Plant Organizer by creating your ow
 
 Built With
 
-- Rails, '~> 6.0.3', '>= 6.0.3.4'
+- Rails, '~> 6.0.3.'
 - PostGres for ActiveRecord
 - CORS
 - Fast JSONapi
