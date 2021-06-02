@@ -5,6 +5,5 @@ class Api::V1::LightsController < ApplicationController
         render json: LightSerializer.new(@lights)
     end
 
-
-
+    
 end
