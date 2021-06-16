@@ -5,7 +5,7 @@
 
 Single Page Application for Plant Information & Plant Organizer. This is the backend of the app which is built with Ruby on Rails. This serves as an api, when user has been created by auth0, all of the information will be sent via params to create user in the backend database. So that users have the ability to create, edit and delete plants and collections. 
 
-The backend of this application is hosted in Heroku: https://not-another-plant-killer.herokuapp.com/api/v1/plants
+The backend of this application is hosted in Heroku: https://not-another-plant-killer.herokuapp.com/api/v1/plants<br>
 The frontend is hosted in Netlify: https://not-another-plant-killer.netlify.app/
 
  Installing
