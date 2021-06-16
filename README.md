@@ -1,4 +1,4 @@
-# WELCOME TO NOT ANOTHER PLANT KILLER!
+# NOT ANOTHER PLANT KILLER
 ![alt text](https://github.com/anpham148/not-another-plant-killer-frontend/blob/main/public/thumbnail.png) </br>
 
  Summary
