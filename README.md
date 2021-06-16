@@ -13,7 +13,7 @@ The frontend is hosted in Netlify: https://not-another-plant-killer.netlify.app/
 1. Fork and clone this repository.
 2. Run 'rails s' in your terminal.
 3. The page will be openned on your default browser.
-4. Fork and clone https://github.com/anpham148/not-another-plant-killer-frontend (follow installing instruction in frontend repo README).
+4. Fork and clone https://github.com/an-t-pham/not-another-plant-killer-frontend (follow installing instruction in frontend repo README).
 
 Built With
 
