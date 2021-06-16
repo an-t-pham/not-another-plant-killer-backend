@@ -1,5 +1,5 @@
 # WELCOME TO NOT ANOTHER PLANT KILLER!
-![alt text](./public/thumbnail.png) </br>
+![alt text](https://github.com/anpham148/not-another-plant-killer-frontend/blob/main/public/thumbnail.png) </br>
 
  Summary
 
